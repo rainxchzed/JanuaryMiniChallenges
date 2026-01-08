@@ -8,8 +8,15 @@ import coil3.disk.DiskCache
 import coil3.disk.directory
 import coil3.memory.MemoryCache
 import coil3.request.crossfade
+import zed.rainxch.januaryminichallenges.core.data.ContextHolder
 
 class Application : Application(), SingletonImageLoader.Factory {
+
+    override fun onCreate() {
+        super.onCreate()
+
+        ContextHolder.context = this.applicationContext
+    }
     override fun newImageLoader(context: PlatformContext): ImageLoader {
         return ImageLoader.Builder(context)
             .crossfade(true)
