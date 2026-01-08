@@ -8,8 +8,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.WinterTravelGalleryMainScreen
 import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.WinterTravelGalleryRoot
-import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.model.Destination
-import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.model.getByTitle
 
 @Composable
 fun WinterTravelNavigation() {
