@@ -2,14 +2,23 @@ package zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.com
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowRight
+import androidx.compose.material.icons.automirrored.outlined.ArrowRight
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.BorderRight
+import androidx.compose.material.icons.outlined.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,13 +45,17 @@ fun GalleryItem(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(220.dp)
+            .height(250.dp)
             .clip(RoundedCornerShape(12.dp))
+            .background(Color.White)
+            .padding(2.dp)
     ) {
         Image(
             painter = painterResource(destination.cover),
             contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(12.dp)),
             contentScale = ContentScale.Crop
         )
 
@@ -50,6 +63,7 @@ fun GalleryItem(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(RoundedCornerShape(12.dp))
+                .clickable(onClick = onClick)
                 .background(
                     Brush.linearGradient(
                         listOf(
@@ -60,19 +74,34 @@ fun GalleryItem(
                 )
         )
 
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.BottomCenter),
+                .align(Alignment.BottomCenter)
+                .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
                 text = destination.title,
                 fontFamily = plusJakartaSansFont(),
                 fontWeight = FontWeight.Medium,
                 color = WinterTravelGalleryColors.textCard,
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                maxLines = 2,
+                softWrap = true,
+                modifier = Modifier.weight(1f)
+            )
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(20.dp)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .padding(2.dp),
+                tint = WinterTravelGalleryColors.textPrimary
             )
         }
     }

@@ -22,10 +22,13 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import zed.rainxch.januaryminichallenges.core.presentation.WinterTravelGalleryColors
 import zed.rainxch.januaryminichallenges.core.presentation.plusJakartaSansFont
+import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.components.GalleryItem
 import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.model.Destination
 
 @Composable
-fun WinterTravelGalleryMainScreen() {
+fun WinterTravelGalleryMainScreen(
+    onNavigateToGallery : (Destination) -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,8 +56,13 @@ fun WinterTravelGalleryMainScreen() {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(Destination.entries) {
-
+            items(Destination.entries) { destination ->
+                GalleryItem(
+                    destination = destination,
+                    onClick = {
+                        onNavigateToGallery(destination)
+                    }
+                )
             }
         }
     }
@@ -63,5 +71,7 @@ fun WinterTravelGalleryMainScreen() {
 @Preview
 @Composable
 private fun Preview() {
-    WinterTravelGalleryMainScreen()
+    WinterTravelGalleryMainScreen(
+        onNavigateToGallery = { }
+    )
 }

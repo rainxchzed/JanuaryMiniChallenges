@@ -8,6 +8,7 @@ import januaryminichallenges.composeapp.generated.resources.lapland
 import januaryminichallenges.composeapp.generated.resources.norway_fjords
 import januaryminichallenges.composeapp.generated.resources.swiss_villages
 import org.jetbrains.compose.resources.DrawableResource
+import zed.rainxch.januaryminichallenges.winter_travel_gallery.presentation.model.Destination.entries
 
 enum class Destination(
     val title: String,
@@ -73,5 +74,9 @@ enum class Destination(
             "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&q=80",
             "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"
         )
-    )
+    );
+}
+
+fun getByTitle(title: String) : Destination {
+    return Destination.entries.find { it.title.lowercase() == title }!!
 }
