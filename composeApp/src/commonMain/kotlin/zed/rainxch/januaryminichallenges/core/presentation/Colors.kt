@@ -30,3 +30,13 @@ object SettingsColors {
     val textSecondary = Color(0xff3F4D63)
     val primary = Color(0xff50ADF5)
 }
+
+object RecipeColors {
+    val bg = Color(0xffFFFDF9)
+    val surfaceInput = Color(0xffDEDBD4).copy(alpha = .3f)
+    val outline = Color(0xffDEDBD4)
+    val overlay = Color(0xff080603).copy(alpha = .7f)
+    val textPrimary = Color(0xff011A0E)
+    val textSecondary = Color(0xff595447)
+    val textOnPrimary = Color(0xffFFFFFF)
+}
