@@ -60,8 +60,6 @@ class RecipeViewModel : ViewModel() {
     fun onAction(action: RecipeAction) {
         when (action) {
             RecipeAction.OnPullToRefreshTrigger -> {
-
-
                 viewModelScope.launch {
                     _state.update {
                         it.copy(
@@ -81,11 +79,15 @@ class RecipeViewModel : ViewModel() {
             }
 
             is RecipeAction.OnRecipeClick -> {
-
+                _state.update { it.copy(
+                    selectedRecipe = action.recipeX
+                ) }
             }
 
             RecipeAction.OnRecipeDone -> {
-
+                _state.update { it.copy(
+                    selectedRecipe = null
+                ) }
             }
 
             is RecipeAction.OnRecipeFavouriteToggle -> {

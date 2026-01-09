@@ -32,6 +32,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import zed.rainxch.januaryminichallenges.core.presentation.RecipeColors
 import zed.rainxch.januaryminichallenges.core.presentation.instrumentSerifFont
 import zed.rainxch.januaryminichallenges.core.presentation.utils.ObserveAsEvents
+import zed.rainxch.januaryminichallenges.recipe.presentation.components.RecipeDialog
 import zed.rainxch.januaryminichallenges.recipe.presentation.components.RecipeSnackbar
 import zed.rainxch.januaryminichallenges.recipe.presentation.components.RecipeItem
 import zed.rainxch.januaryminichallenges.recipe.presentation.components.SearchTextField
@@ -61,6 +62,15 @@ fun RecipeRoot(
         snackbarHostState = snackbarHostState,
         onAction = viewModel::onAction
     )
+
+    state.selectedRecipe?.let {
+        RecipeDialog(
+            recipeX = state.selectedRecipe!!,
+            onDismissRequest = {
+                viewModel.onAction(RecipeAction.OnRecipeDone)
+            }
+        )
+    }
 }
 
 @Composable
@@ -129,11 +139,11 @@ fun RecipeScreen(
                         columns = GridCells.Fixed(
                             when (screenSize) {
                                 ScreenSize.Compact -> 1
-                                ScreenSize.Medium -> 2
-                                ScreenSize.Expanded -> 2
+                                ScreenSize.Medium, ScreenSize.Expanded -> 2
                             }
                         ),
-                        verticalArrangement = Arrangement.spacedBy(28.dp)
+                        verticalArrangement = Arrangement.spacedBy(28.dp),
+                        horizontalArrangement = Arrangement.spacedBy(24.dp)
                     ) {
                         items(
                             items = state.recipes.filter { it.isFavourite },
@@ -183,14 +193,6 @@ fun RecipeScreen(
             }
         }
     }
-}
-
-@Composable
-fun RecipeTopBar(
-    state: RecipeState,
-    onAction: (RecipeAction) -> Unit
-) {
-
 }
 
 @Preview
